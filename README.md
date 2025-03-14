@@ -4,7 +4,7 @@
 This framework evaluates **Hybrid Search vs. Dense Search** using **PostgreSQL, Sentence Transformers, TF-IDF, and Athina LLM**. It:  
 ✅ Converts **text data to embeddings** & stores in PostgreSQL  
 ✅ Implements **Hybrid Search (Dense + Sparse)** and **Dense Search**  
-✅ Uses **Athina LLM** to compare search effectiveness based on relevance  
+✅ Uses **Athina LLM** to compare search effectiveness 
 
 ## **Files & Their Roles**  
 📌 `insert.py` – Converts dataset to embeddings & inserts into PostgreSQL  
