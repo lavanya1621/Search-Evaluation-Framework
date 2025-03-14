@@ -1,0 +1,10 @@
+psycopg2==2.9.9
+pandas==2.2.1
+numpy==1.26.4
+python-dotenv==1.0.1
+sentence-transformers==2.5.1
+scikit-learn==1.4.1.post1
+requests==2.31.0
+  # Ensure this is the correct version, or adjust as needed
+transformers==4.49.0
+tokenizers==0.21.1  # Change to the latest available version
