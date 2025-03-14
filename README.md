@@ -28,18 +28,27 @@ This framework evaluates **Hybrid Search vs. Dense Search** using **PostgreSQL, 
 
 ---
 
-## **Mermaid Diagram**  
+## 🔍 Search Process  
 ```mermaid
 graph TD;
-    A[User Query] -->|Generate Embeddings| B[Sentence Transformer]
-    A -->|Generate Sparse Vectors| C[TF-IDF Vectorizer]
-    B -->|Store in DB| D[PostgreSQL]
-    C -->|Store in DB| D
-    A -->|Run Dense Search| E[Cosine Similarity]
-    A -->|Run Hybrid Search| F[Weighted Combination]
-    E -->|Return Results| G[Dense Results]
-    F -->|Return Results| H[Hybrid Results]
-    G -->|Format for Athina| I[Athina Dataset]
-    H -->|Format for Athina| I
-    I -->|Run Evaluations| J[Athina LLM]
-    J -->|Compare & Score| K[Final Results]
+    A[User Query] -->|Generate Dense & Sparse Vectors| B[SentenceTransformer & TF-IDF]
+    B -->|Vectorized Query| C[PostgreSQL Database]
+    
+    subgraph Database
+        C -->|Search using Dense Vectors| D[Dense Search]
+        C -->|Search using Hybrid Approach| E[Hybrid Search]
+    end
+    
+    D -->|Top-K Results| F[Results Formatting]
+    E -->|Top-K Results| F
+    
+    F -->|Format for Athina| G[Athina Evaluation]
+    
+    subgraph Athina LLM
+        G -->|Compare Dense vs Hybrid| H[Does Response Answer Query?]
+        G --> I[Context Contains Enough Information?]
+    end
+    
+    H & I --> J[Final Evaluation & Scores]
+    
+    J -->|Comparison Results| K[Best Performing Search Approach]
